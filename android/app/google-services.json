@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "728903947202",
+    "project_id": "reactmyplacesfiap-322610",
+    "storage_bucket": "reactmyplacesfiap-322610.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:728903947202:android:0d7cd2d97961eeb7637c5b",
+        "android_client_info": {
+          "package_name": "com.reactclicurso"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "728903947202-a6nnec0td2ie3vg5mdfic23tabdgjmr7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3mnjMne_l-bwffkAvB-IvmZazuROOUGc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "728903947202-a6nnec0td2ie3vg5mdfic23tabdgjmr7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
