@@ -30,8 +30,6 @@ const HomeController = (props) => {
   //Chamando apos o carregamento do componente
   useEffect(() => {
     console.log("Component Did Mount");
-    console.log("userInfosParam", userInfosParam);
-    console.log("unserInfos", userInfos);
 
     if(userInfosParam == -1) {
       ManageSharedPreferences.getUserInfos(setUserInfos); //Recebendo dados na home

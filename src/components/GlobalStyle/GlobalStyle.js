@@ -4,6 +4,14 @@ export default StyleSheet.create({
 
     /* Estilos comuns */
 
+    align_center: {
+        alignSelf: 'center',
+    },
+
+    background_blue: {
+        backgroundColor: '#020C53',
+    },
+
     margin_bottom_8: {
         marginBottom: 8,
     },
@@ -18,6 +26,10 @@ export default StyleSheet.create({
 
     margin_bottom_32: {
         marginBottom: 32,
+    },
+
+    white_text: {
+        color: '#fff',
     },
 
     black_text: {
@@ -58,6 +70,11 @@ export default StyleSheet.create({
     error_minor_text: {
         fontFamily: 'Montserrat-Regular',
         color: 'red'
+    },
+
+    error_dark_minor_text: {
+        fontFamily: 'Montserrat-Regular',
+        color: '#FB8500'
     },
 
     bold_orange_high_text: {
@@ -158,6 +175,11 @@ export default StyleSheet.create({
 
     border_bottom_light_input: {
         borderBottomColor: '#020C53',
+        borderBottomWidth: .9,
+    },
+    
+    border_bottom_dark_input: {
+        borderBottomColor: '#ffffff',
         borderBottomWidth: .9,
     },
 

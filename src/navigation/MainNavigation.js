@@ -13,6 +13,7 @@ import HomeController from '../screens/Home/Controller/HomeController';
 import SplashScreenController from '../screens/SplashScreen/Controller/SplashScreenController';
 import CadastroContaEnergiaController from '../screens/CadastroContaEnergia/Controller/CadastroContaEnergiaController';
 import VisualizacaoContaEnergiaController from '../screens/VisualizacaoContaEnergia/Controller/VisualizacaoContaEnergiaController';
+import CadastroController from '../screens/Cadastro/Controller/CadastroController';
 
 //Aqui criamos o DrawerNavigator. Ele é um objeto que criará o header
 const AppLogged = createDrawerNavigator(
@@ -23,6 +24,7 @@ const AppLogged = createDrawerNavigator(
       Login: LoginController,
       DetailsPlace: DetailsPlacesController,
       NewPlace: NewPlaceController,
+      Cadastro: CadastroController,
     }),
     LogedArea: createStackNavigator({    
       Home: HomeController,
@@ -97,6 +99,7 @@ export default class MainNavigation extends React.Component {
     console.log('Rendering');
     //Colocando o AppContainer para renderizar
     return (
+      
       <AppContainer ref={nav => { this.navigator = nav; }}/>
     );
   }

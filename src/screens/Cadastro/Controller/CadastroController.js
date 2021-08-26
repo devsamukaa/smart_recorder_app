@@ -1,81 +1,76 @@
 import React, {useState, useEffect} from 'react';
 import { Keyboard } from 'react-native';
-import ManageToken from '../../../utils/ManageToken'
-import LoginView from '../View/LoginView';
-import LoginModel from '../Model/LoginModel';
+import { Encrypt } from '../../../utils/Encrypt';
+import CadastroView from '../View/CadastroView';
+import CadastroModel from '../Model/CadastroModel';
 import { NavigationActions } from 'react-navigation';
 import { ManageSharedPreferences } from '../../../utils/ManageSharedPreferences';
-import { Encrypt } from '../../../utils/Encrypt';
 
-const LoginController = (props) => {
+const CadastroController = (props) => {
 
-  //States de dados
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  //States de Comportamento
   const [isLoading, setIsLoading] = useState(false);
-  const [isShowingMessageError, setShowingMessageError] = useState(false);
+  const [isShowingMessageError, setShowingMessageError] = useState('');
   const [messageError, setMessageError] = useState('');
 
-  const loginModel = new LoginModel();
-
-  //Inicializa o Manage Token
-  let manageToken = new ManageToken();
+  const cadastroModel = new CadastroModel();
 
   //Chamando apos o carregamento do componente
   useEffect(() => {
     console.log("Component Did Mount");
 
-
     //Alterando Titulo da Pagina
     props.navigation.setParams({headerShown: false});
+    return
 
-    //Pede permissão ao usuário
-    manageToken.checkPermission();
-    
   }, []);
-
-  useEffect(() => {
-
-    console.log(email, password);
-
-  }, [email, password]);
 
   const showMessageError = (message) => {
     setMessageError(message);
     setShowingMessageError(true);
+    console.log(message);
   }
 
   const hideMessageError = () => {
     setShowingMessageError(false);
   }
 
-  const login = () => {
+  const cadastraPessoa = (pessoa) => {
+    
+    let payload = {
+      nome: pessoa.nome,
+      email: pessoa.email,
+      cpf: pessoa.cpf,
+      cnpj: null,
+      metaConsumo: null,
+      tipoPessoa: "PF",
+      password: Encrypt.toSHA1(pessoa.senha),
+      plano: {
+          cdPlano: 1
+      }
+    }
+
     Keyboard.dismiss();
     hideMessageError();
 
-    if(!isLoading){
+    if(!isLoading) {
       setIsLoading(true);
-      loginModel.login(email, Encrypt.toSHA1(password), callbackLogin);
+
+      cadastroModel.cadastrarPessoa(payload, callbackCadastraPessoa);
     }
-    
   }
 
-  const callbackLogin = (status, userInfos) => {
+  const callbackCadastraPessoa = (status, userInfos) => {
     
     console.log(status, userInfos);
     setIsLoading(false);
 
-    if(status == 200) {
+    if(status == 201) {
       //goToHome(userInfos);
       if(ManageSharedPreferences.saveUserInfos(userInfos)){
         goToHome(userInfos);
       }else{
         showMessageError("Erro, por favor tente novamente.");
       }
-    }else if(status == 403){
-      showMessageError("Email ou senha inválidos");
     }else {
       showMessageError("Erro, por favor tente novamente.");
     }
@@ -89,43 +84,27 @@ const LoginController = (props) => {
     });
     props.navigation.dispatch(navigateAction);
   }
-
-  const goToCadastro = () => {
-    const navigateAction = NavigationActions.navigate({
-      routeName: "Cadastro",
-    });
-    props.navigation.dispatch(navigateAction);
-  }
-
-  const callbackOnFocus = () => {
-    hideMessageError();
-  }
-
+ 
   return (
     //Chamando o View e passando o props count_info
-      <LoginView
-        setEmail = {setEmail}
-        setPassword = {setPassword}
-        login = {login}
+      <CadastroView
+        navigation = {props.navigation}
+
+        cadastraPessoa = {cadastraPessoa}
 
         isLoading = {isLoading}
         messageError = {messageError}
         isShowingMessageError = {isShowingMessageError}
-        
-        callbackOnFocus = {callbackOnFocus}
         hideMessageError = {hideMessageError}
-
-        goToCadastro = {goToCadastro}
       />
   )
 }
 
-
 //Aqui a grande mudança: Agora customizamos nosso header
 //diretamente no componente. E usamos um novo componente chamado
 //DefaultHeader para utilizarmos o mesmo código em todas os componentes
-LoginController.navigationOptions = ({ navigation }) => {
+CadastroController.navigationOptions = ({ navigation }) => {
   return DefaultHeader(navigation);
 };
   
-export default LoginController;
+export default CadastroController;

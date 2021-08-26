@@ -117,7 +117,7 @@ export default LoginView = (props) => {
                 <View style={{paddingBottom: 16}}>
                     <Text style={styles.normal_white_text}>Não possui cadastro?</Text>
                 </View>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => {props.goToCadastro()}}>
                     <View style={styles.orange_button}>
                         <Text style={styles.text_orange_button}>Cadastre-se</Text>
                     </View>                             

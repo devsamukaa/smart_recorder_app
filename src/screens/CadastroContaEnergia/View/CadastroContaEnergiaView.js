@@ -160,7 +160,7 @@ export default CadastroContaEnegiaView = (props) => {
                           blurOnSubmit={false}
                           />
 
-                        {errors.vencimentoConta && <Text style={[styles.error_minor_text]}>{errors.vencimentoConta}</Text>}
+                        {(errors.vencimentoConta && touched.vencimentoConta) && <Text style={[styles.error_minor_text]}>{errors.vencimentoConta}</Text>}
                         
                       </View>
 

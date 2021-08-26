@@ -65,7 +65,6 @@ export default HomeView = (props) => {
       )
     }
 
-
     const renderCalculoConsumo = () => {
 
       const formValidationSchema = yup.object().shape({
