@@ -12,6 +12,14 @@ export default StyleSheet.create({
         backgroundColor: '#020C53',
     },
 
+    padding_horizontal_8: {
+        paddingHorizontal: 8,  
+    },
+
+    padding_horizontal_16: {
+        paddingHorizontal: 16,  
+    },
+
     margin_bottom_8: {
         marginBottom: 8,
     },
@@ -30,6 +38,10 @@ export default StyleSheet.create({
 
     white_text: {
         color: '#fff',
+    },
+
+    orange_text: {
+        color: '#FB8500',
     },
 
     black_text: {
