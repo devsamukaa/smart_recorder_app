@@ -121,7 +121,7 @@ export default VisualizacaoContaEnergiaView = (props) => {
 
               {(props.userInfos.consumo != null) && renderCalculoResult()}
 
-              <TouchableOpacity style={styles.margin_bottom_32}>
+              <TouchableOpacity style={styles.margin_bottom_32} onPress={() => props.goTo('EntendaSuaConta', '')}>
                 <View style={[
                     styles.orange_button
                     ]}>

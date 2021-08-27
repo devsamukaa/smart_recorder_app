@@ -17,6 +17,11 @@ export default StyleSheet.create({
         backgroundColor: '#020C53',
     },
 
+
+    padding_horizontal_16: {
+        paddingHorizontal: 16,  
+    },
+
     bold_black_text_14: {
         fontFamily: 'Montserrat-Bold',
         fontSize: 14,
@@ -100,6 +105,10 @@ export default StyleSheet.create({
 
     white_text: {
         color: '#fff',
+    },
+
+    orange_text: {
+        color: '#FB8500',
     },
 
     black_text: {
