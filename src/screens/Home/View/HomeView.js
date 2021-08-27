@@ -25,8 +25,8 @@ export default HomeView = (props) => {
     const renderDialogCadastrarConta = () => {
       return (
         <View>
-          <View style={customStyles.conatiner_top_text}>
-            <Text style={[customStyles.top_text]}>Para habilitar o cálculo do consumo precisamos saber alguns dados da sua conta de energia mais atual </Text>
+          <View style={styles.margin_bottom_16}>
+            <Text style={[styles.black_text_18, styles.margin_bottom_16]}>Para habilitar o cálculo do consumo precisamos saber alguns dados da sua conta de energia mais atual. </Text>
           </View>
           <TouchableOpacity onPress={() => props.goTo("CadastroContaEnergia")}>
             <View style={[styles.orange_button, customStyles.premium_button]}>
@@ -55,10 +55,10 @@ export default HomeView = (props) => {
       
       return(
         <View>
-        <View style={customStyles.conatiner_top_text}>
+        <View style={styles.margin_bottom_16}>
           <Text style={[customStyles.text_result, styles.text_align_center]}>{custo}</Text>
         </View>
-        <View style={customStyles.conatiner_top_text}>
+        <View style={styles.margin_bottom_16}>
           <Text style={[customStyles.text_kwh_result, styles.text_align_center]}>{kwh}</Text>
         </View>
       </View>
@@ -82,8 +82,8 @@ export default HomeView = (props) => {
       return(
         <View>
 
-          <View style={styles.conatiner_top_text}>
-            <Text style={[styles.bold_orange_high_text]}>Cálculo do Consumo: </Text>
+          <View style={styles.conatiner_top_text, styles.margin_bottom_16}>
+            <Text style={[styles.bold_orange_high_text]}>Descubra quanto irá pagar na conta de luz agora mesmo!</Text>
           </View>
           
           <Formik
@@ -185,6 +185,12 @@ export default HomeView = (props) => {
                 isShowingMessageError = {props.isShowingMessageError}
                 hideMessageError = {props.hideMessageError}
               />
+
+              <View>
+                <Text style={[styles.black_text_20, styles.margin_bottom_24]}>
+                  Olá<Text style={[styles.bold_black_text_20]}> {props.userInfos.hasOwnProperty("password") ? props.userInfos.nome.toString().split(' ')[0] : ""}</Text>! 😁✌️
+                </Text>
+              </View>
               
               {(props.userInfos.contaLuz == null) && renderDialogCadastrarConta()}
 

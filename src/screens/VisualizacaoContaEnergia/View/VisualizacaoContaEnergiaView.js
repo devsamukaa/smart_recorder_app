@@ -25,6 +25,13 @@ export default VisualizacaoContaEnergiaView = (props) => {
       separator: ',',
       delimiter: '.'
     });
+
+    const valorCip = props.userInfos.contaLuz.valorCip;
+    const valorCipFormatado = MaskService.toMask('money', valorCip, {
+      unit: 'R$ ',
+      separator: ',',
+      delimiter: '.'
+    });
     
     const dataUltimaAtualizacao = CustomParses.parseDateWithZeroHoursToString(props.userInfos.contaLuz.dataRegistro);
 
@@ -47,6 +54,11 @@ export default VisualizacaoContaEnergiaView = (props) => {
                 <View style={[customStyles.container_labels, styles.margin_bottom_8]}>
                   <Text style={[styles.bold_black_text_18]}>Valor por kWh:</Text>
                   <Text style={[styles.black_text_18]}>{valorKwhFormatado}</Text>
+                </View>
+
+                <View style={[customStyles.container_labels, styles.margin_bottom_8]}>
+                  <Text style={[styles.bold_black_text_18]}>Valor do CIP/COSIP:</Text>
+                  <Text style={[styles.black_text_18]}>{valorCipFormatado}</Text>
                 </View>
                 
                 <View style={[customStyles.container_labels]}>

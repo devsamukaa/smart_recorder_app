@@ -47,6 +47,7 @@ const CadastroContaEnergiaController = (props) => {
       kwhConta: conta.consumoMes,
       valorPago: CustomParses.parseCurrencyString(0, conta.totalPago),
       valorTributos: CustomParses.parseCurrencyString(0, conta.totalTributos),
+      valorCip: CustomParses.parseCurrencyString(0, conta.valorCip),
       dataValidade: conta.vencimentoConta,
       dataRegistro: format(new Date(), "dd/MM/yyyy"),
       instalacao: {

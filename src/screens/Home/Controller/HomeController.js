@@ -13,7 +13,7 @@ const HomeController = (props) => {
   const [messageError, setMessageError] = useState('');
 
   let userInfosParam = JSON.parse(props.navigation.getParam('userInfos', '-1'));
-  const [userInfos, setUserInfos] = useState({});
+  const [userInfos, setUserInfos] = useState(userInfosParam);
 
   const homeModel = new HomeModel();
 
@@ -27,20 +27,37 @@ const HomeController = (props) => {
     setShowingMessageError(false);
   }
 
+  const unsubscribe = props.navigation.addListener('didFocus', () => {
+      console.log('focussed');
+      console.log("userInfos focussed", userInfos);
+      console.log("userInfosParam focussed", userInfosParam);
+
+      if(userInfosParam != null && userInfosParam != '-1') {
+        if(JSON.stringify(userInfos) != JSON.stringify(userInfosParam)){
+          setUserInfos(userInfosParam);
+        }
+      }
+
+  });
+
   //Chamando apos o carregamento do componente
   useEffect(() => {
-    console.log("Component Did Mount");
+    console.log("Component Did Mount Home");
 
-    if(userInfosParam == -1) {
+    console.log("userInfosParam", userInfosParam);
+    console.log("userInfos", userInfos);
+
+    if(userInfosParam == null || userInfosParam == '-1') {
       ManageSharedPreferences.getUserInfos(setUserInfos); //Recebendo dados na home
-    }else{
+    }else if(userInfosParam.hasOwnProperty("password")){
       setUserInfos(userInfosParam);
     }
   
     //Alterando Titulo da Pagina
     props.navigation.setParams({titlePage: "Home"});
 
-    return
+    return () => {
+    }
 
   }, []);
 
@@ -139,6 +156,7 @@ const HomeController = (props) => {
     //Chamando o View e passando o props count_info
       <HomeView
         userInfos={userInfos}
+        userInfosParam={userInfosParam}
         goTo={goTo}
         navigation={props.navigation}
 

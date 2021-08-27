@@ -15,6 +15,7 @@ export default CadastroContaEnegiaView = (props) => {
     const [vencimentoContaInput, setVencimentoContaInput] = useState(null)
     const [totalPagoInput, setTotalPagoInput] = useState(null)
     const [totalTributosInput, setTotalTributosInput] = useState(null)
+    const [valorCipInput, setValorCipInput] = useState(null)
 
     //Adicionar padding somente para iOS
     let behavior = "";
@@ -44,7 +45,12 @@ export default CadastroContaEnegiaView = (props) => {
         .number()
         .transform(CustomParses.parseCurrencyString)
         .positive()
-        .required('Insira o total dos tributos')
+        .required('Insira o total dos tributos'),
+      valorCip: yup
+        .number()
+        .transform(CustomParses.parseCurrencyString)
+        .positive()
+        .required('Insira o valor do CIP ou COSIP de sua cidade')
     });
 
     const initializeFormik = props.action == 'editar' ?
@@ -53,8 +59,9 @@ export default CadastroContaEnegiaView = (props) => {
       vencimentoConta: CustomParses.parseDateWithZeroHoursToString(props.userInfos.contaLuz.dataValidade), 
       totalPago: props.userInfos.contaLuz.valorPago, 
       totalTributos: props.userInfos.contaLuz.valorTributos,
+      valorCip: props.userInfos.contaLuz.valorCip,
     } :
-    {consumoMes: '', vencimentoConta: '', totalPago: '', totalTributos: ''};
+    {consumoMes: '', vencimentoConta: '', totalPago: '', totalTributos: '', valorCip: ''};
     
 
     return (
@@ -208,9 +215,9 @@ export default CadastroContaEnegiaView = (props) => {
                     </View>
 
                     {/* Valor Total Tributos */}
-                    <View style={[styles.margin_bottom_32]}>
+                    <View style={[styles.margin_bottom_16]}>
 
-                      <View style={[]}>
+                      <View>
                         <Text style={[styles.bold_black_text]}>Total dos tributos:</Text>
                       </View>
 
@@ -237,11 +244,52 @@ export default CadastroContaEnegiaView = (props) => {
                           value={values.totalTributos}
                           onChangeText={handleChange('totalTributos')}
                           handleBlur={handleBlur('totalTributos')}
+                          returnKeyType="next"
+                          onSubmitEditing={() => { if(valorCipInput != null) {valorCipInput.focus()} }}
+                          blurOnSubmit={false}
+                        />
+
+                        {(errors.totalTributos && touched.totalTributos) && <Text style={[styles.error_minor_text]}>{errors.totalTributos}</Text>}
+
+                      </View>
+
+                    </View>
+
+                    {/* Valor CIP */}
+                    <View style={[styles.margin_bottom_32]}>
+
+                      <View>
+                        <Text style={[styles.bold_black_text]}>Valor do CIP ou COSIP:</Text>
+                      </View>
+
+                      <View>
+                      
+                        <TextInputMask
+                          refInput={(input) => { setValorCipInput(input) }}
+                          name='valorCip'
+                          placeholder='Ex: R$ 5,74'
+                          options={{
+                            precision: 2,
+                            separator: ',',
+                            delimiter: '.',
+                            unit: 'R$ ',
+                            suffixUnit: ''
+                          }}
+                          placeholderTextColor={placeholderTextColor}
+                          style={[
+                            styles.light_text_input, 
+                            styles.container_input,
+                            styles.border_bottom_light_input,
+                          ]}
+                          type={'money'}
+                          value={values.valorCip}
+                          onChangeText={handleChange('valorCip')}
+                          handleBlur={handleBlur('valorCip')}
                           returnKeyType='go'
                           onSubmitEditing={(event) => handleSubmit()}
                         />
 
-                        {(errors.totalTributos && touched.totalTributos) && <Text style={[styles.error_minor_text,]}>{errors.totalTributos}</Text>}
+                        {(errors.valorCip && touched.valorCip) && <Text style={[styles.error_minor_text,]}>{errors.valorCip}</Text>}
 
                       </View>
 
