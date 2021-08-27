@@ -14,13 +14,60 @@ export default StyleSheet.create({
 
     text_result: {
         fontFamily: 'Montserrat-Bold',
-        fontSize: 36,
+        fontSize: 30,
         marginTop: -16,
     },
 
     text_kwh_result: {
         fontFamily: 'Montserrat-Regular',
-        fontSize: 30,
+        fontSize: 26,
         marginTop: -16,
     },
+
+    text_date_result: {
+        fontFamily: 'Montserrat-Regular',
+        fontSize: 16,
+        marginTop: -16,
+    },
+
+    colunaItem: {
+        maxWidth: '50%',
+        flexGrow: 1,
+    },
+
+    colunaAliqIcms: {
+        width: 45,
+    },
+
+    colunaIcms: {
+        width: 60,
+    },
+
+    colunaValor: {
+        width: 70,
+    },
+
+    container_header: {
+        alignItems: 'center',
+        alignContent: 'center',
+        textAlignVertical: 'center',
+    },
+
+    colunaHeader: {
+        fontFamily: 'Montserrat-Bold',
+        fontSize: 14,
+        textAlignVertical: 'center',
+        textAlign: 'center',
+    },
+
+    colunaBody: {
+        fontFamily: 'Montserrat-Regular',
+        fontSize: 14,
+        textAlignVertical: 'center',
+        textAlign: 'center',
+    },
+
+    linha: {
+        justifyContent: 'space-between',
+    }
 });

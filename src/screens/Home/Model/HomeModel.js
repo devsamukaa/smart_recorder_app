@@ -63,6 +63,9 @@ export default class HomeModel {
             return Promise.all([statusCode, data]);
         })
         .then(([status, consumo]) => {
+            consumo.dataMedicao = payload.dataMedicao;
+            consumo.kwhUltimaConta = payload.kwhUltimaConta;
+            consumo.kwhRelogio = payload.kwhRelogio;
             //Trata a resposta em Json
             callback(status, consumo);
         }).catch(function(error) {
