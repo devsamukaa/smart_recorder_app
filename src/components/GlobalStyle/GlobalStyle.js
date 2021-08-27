@@ -74,6 +74,10 @@ export default StyleSheet.create({
         paddingBottom: 16,
     },
 
+    padding_horizontal_0: {
+        paddingHorizontal: 0,
+    },
+
     padding_vertical_8: {
         paddingVertical: 8,
     },

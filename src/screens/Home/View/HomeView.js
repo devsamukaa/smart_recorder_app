@@ -224,7 +224,6 @@ export default HomeView = (props) => {
               values,
               errors,
               touched,
-              isValid,
               }) => (
                 <>
                   <View style={[styles.margin_bottom_16]}>
@@ -277,7 +276,7 @@ export default HomeView = (props) => {
                     {(errors.kwhRelogio && touched.kwhRelogio) && <Text style={[styles.error_minor_text,]}>{errors.kwhRelogio}</Text>}
                   </View>
 
-                  <TouchableOpacity onPress={handleSubmit} disabled={!isValid}>
+                  <TouchableOpacity onPress={handleSubmit}>
                     <View style={[styles.blue_button, customStyles.premium_button]}>
 
                         {(!props.isLoading) && <Text style={styles.text_blue_button}>Calcular</Text>}

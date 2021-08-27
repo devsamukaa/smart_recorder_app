@@ -98,7 +98,6 @@ export default CadastroContaEnegiaView = (props) => {
                   values,
                   errors,
                   touched,
-                  isValid,
                   
                   }) => (
                   <>
@@ -295,7 +294,7 @@ export default CadastroContaEnegiaView = (props) => {
 
                     </View>
 
-                    <TouchableOpacity onPress={handleSubmit} disabled={!isValid}>
+                    <TouchableOpacity onPress={handleSubmit}>
                         <View style={[
                             styles.orange_button
                             ]}>

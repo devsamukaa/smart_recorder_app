@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import { Keyboard } from 'react-native';
-import ManageToken from '../../../utils/ManageToken'
 import LoginView from '../View/LoginView';
 import LoginModel from '../Model/LoginModel';
 import { NavigationActions } from 'react-navigation';
@@ -9,19 +8,12 @@ import { Encrypt } from '../../../utils/Encrypt';
 
 const LoginController = (props) => {
 
-  //States de dados
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
   //States de Comportamento
   const [isLoading, setIsLoading] = useState(false);
   const [isShowingMessageError, setShowingMessageError] = useState(false);
   const [messageError, setMessageError] = useState('');
 
   const loginModel = new LoginModel();
-
-  //Inicializa o Manage Token
-  let manageToken = new ManageToken();
 
   //Chamando apos o carregamento do componente
   useEffect(() => {
@@ -30,17 +22,8 @@ const LoginController = (props) => {
 
     //Alterando Titulo da Pagina
     props.navigation.setParams({headerShown: false});
-
-    //Pede permissão ao usuário
-    manageToken.checkPermission();
     
   }, []);
-
-  useEffect(() => {
-
-    console.log(email, password);
-
-  }, [email, password]);
 
   const showMessageError = (message) => {
     setMessageError(message);
@@ -51,13 +34,13 @@ const LoginController = (props) => {
     setShowingMessageError(false);
   }
 
-  const login = () => {
+  const login = (userInfos) => {
     Keyboard.dismiss();
     hideMessageError();
 
     if(!isLoading){
       setIsLoading(true);
-      loginModel.login(email, Encrypt.toSHA1(password), callbackLogin);
+      loginModel.login(userInfos.email, Encrypt.toSHA1(userInfos.senha), callbackLogin);
     }
     
   }
@@ -104,8 +87,6 @@ const LoginController = (props) => {
   return (
     //Chamando o View e passando o props count_info
       <LoginView
-        setEmail = {setEmail}
-        setPassword = {setPassword}
         login = {login}
 
         isLoading = {isLoading}
