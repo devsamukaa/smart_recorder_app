@@ -11,7 +11,6 @@ import ErrorMessage from '../../../components/ErrorMessage/ErrorMessage';
 
 export default CadastroView = (props) => {
 
-    //0 -> CPF | 1 -> CNPJ
     const [cpfInput, setCpfInput] = useState(null);
     const [emailInput, setEmailInput] = useState(null);
     const [senhaInput, setSenhaInput] = useState(null);
@@ -35,6 +34,10 @@ export default CadastroView = (props) => {
             )
         .matches(/^\s*[\S]+(\s[\S]+)+\s*$/gms, 'Por favor, insira o segundo nome')
         .required('Insira o nome'),
+      email: yup
+        .string()
+        .email("Digite um e-mail válido")
+        .required('Insria o e-mail'),
       cpf: yup
         .string()
         .required('Insira o CPF'),

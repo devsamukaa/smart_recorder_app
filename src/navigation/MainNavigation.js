@@ -4,9 +4,8 @@ import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import { createDrawerNavigator } from 'react-navigation-drawer';
 import SideMenu from '../screens/SideMenu/Controller/SideMenuController';
-import LoginController from '../screens/Login/Controller/LoginController'
-import DetailsPlacesController from '../screens/DetailsPlaces/Controller/DetailsPlacesController';
-import NewPlaceController from '../screens/NewPlace/Controller/NewPlaceController';
+import LoginController from '../screens/Login/Controller/LoginController';
+import NewPlaceController from '../screens/z-deprecated/Controller/NewPlaceController';
 import firebase from 'react-native-firebase';
 import ManageToken from '../utils/ManageToken';
 import HomeController from '../screens/Home/Controller/HomeController';
@@ -22,9 +21,8 @@ const AppLogged = createDrawerNavigator(
     UnLogedArea: createStackNavigator({
       SplashScreen: SplashScreenController,
       Login: LoginController,
-      DetailsPlace: DetailsPlacesController,
-      NewPlace: NewPlaceController,
       Cadastro: CadastroController,
+      NewPlace: NewPlaceController,
     }),
     LogedArea: createStackNavigator({    
       Home: HomeController,
@@ -33,7 +31,7 @@ const AppLogged = createDrawerNavigator(
     }),
   },
   {
-    initialRouteName: 'UnLogedArea', //Places como rota Inicial
+    initialRouteName: 'UnLogedArea',
     contentComponent: SideMenu, //O componente SideMenu sera o menu lateral
 });
 
