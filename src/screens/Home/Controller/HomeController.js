@@ -91,18 +91,18 @@ const HomeController = (props) => {
 
   const calcularConsumo = (status, medicao) => {
 
-    let teste = {...medicao};
+    console.log(medicao);
     
     if(status == 201) {
 
-      console.log('rolou!');
-
       let payload = {
-        mes: format(new Date(teste.dataMedicao), "MM"),
+        mes: format(new Date(medicao.dataMedicao), "MM"),
         ano: format(new Date(medicao.dataMedicao), "yyyy"),
         cdInstalacao: medicao.instalacao.cdInstalacao,
         isMedicaoDispositivo: false,
         dataMedicao: medicao.dataMedicao,
+        kwhRelogio: medicao.kwhRelogio,
+        kwhUltimaConta: medicao.kwhUltimaConta,
       }
 
       console.log(payload);
@@ -125,11 +125,7 @@ const HomeController = (props) => {
 
       let _userInfos = {...userInfos};
 
-      _userInfos.consumo = {
-        kwh: consumo.kwh,
-        custo: consumo.custo,
-        ultimaMedicao: consumo.dataMedicao,
-      };
+      _userInfos.consumo = {...consumo};
 
       userInfosParam = {..._userInfos};
 

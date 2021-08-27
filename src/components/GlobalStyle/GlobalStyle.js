@@ -8,18 +8,85 @@ export default StyleSheet.create({
         alignSelf: 'center',
     },
 
+    boder_test: {
+        borderColor: 'red',
+        borderWidth: 1,
+    },
+
     background_blue: {
         backgroundColor: '#020C53',
     },
 
-    padding_horizontal_8: {
-        paddingHorizontal: 8,  
-    },
 
     padding_horizontal_16: {
         paddingHorizontal: 16,  
     },
 
+    bold_black_text_14: {
+        fontFamily: 'Montserrat-Bold',
+        fontSize: 14,
+    },
+
+    bold_black_text_16: {
+        fontFamily: 'Montserrat-Bold',
+        fontSize: 16,
+    },
+
+    bold_black_text_18: {
+        fontFamily: 'Montserrat-Bold',
+        fontSize: 18,
+    },
+
+    bold_black_text_20: {
+        fontFamily: 'Montserrat-Bold',
+        fontSize: 20,
+    },
+
+    bold_black_text_22: {
+        fontFamily: 'Montserrat-Bold',
+        fontSize: 22,
+    },
+
+    border_top_blue: {
+        borderTopWidth: 1,
+        borderColor: '#020C53',
+    },
+
+    border_bottom_blue: {
+        borderBottomWidth: 1,
+        borderColor: '#020C53',
+    },
+
+    border_bottom_light_input: {
+        borderBottomColor: '#020C53',
+        borderBottomWidth: .9,
+    },
+    
+    border_bottom_dark_input: {
+        borderBottomColor: '#ffffff',
+        borderBottomWidth: .9,
+    },
+
+    flex_direction_row: {
+        flexDirection: 'row',
+    },
+
+    padding_bottom_8: {
+        paddingBottom: 8,
+    },
+
+    padding_bottom_16: {
+        paddingBottom: 16,
+    },
+
+    padding_horizontal_0: {
+        paddingHorizontal: 0,
+    },
+
+    padding_vertical_8: {
+        paddingVertical: 8,
+    },
+ 
     margin_bottom_8: {
         marginBottom: 8,
     },
@@ -64,21 +131,6 @@ export default StyleSheet.create({
         fontSize: 16,
     },
 
-    bold_black_text_18: {
-        fontFamily: 'Montserrat-Bold',
-        fontSize: 18,
-    },
-
-    bold_black_text_20: {
-        fontFamily: 'Montserrat-Bold',
-        fontSize: 20,
-    },
-
-    bold_black_text_22: {
-        fontFamily: 'Montserrat-Bold',
-        fontSize: 22,
-    },
-
     error_minor_text: {
         fontFamily: 'Montserrat-Regular',
         color: 'red'
@@ -110,6 +162,10 @@ export default StyleSheet.create({
     container_scroll_screen: {
         flex: 1,
         backgroundColor: '#fff',
+    },
+
+    container_input: {
+        paddingHorizontal: 0,
     },
 
     internal_container: {
@@ -185,17 +241,11 @@ export default StyleSheet.create({
         fontFamily: 'Montserrat-Regular',
     },
 
-    border_bottom_light_input: {
-        borderBottomColor: '#020C53',
-        borderBottomWidth: .9,
-    },
-    
-    border_bottom_dark_input: {
-        borderBottomColor: '#ffffff',
-        borderBottomWidth: .9,
+    vertical_align_text_center: {
+        textAlignVertical: 'center',
     },
 
-    container_input: {
-        paddingHorizontal: 0,
-    },
+    width_100: {
+        width: '100%',
+    }
 });

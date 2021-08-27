@@ -4,7 +4,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import BottomMenuController from '../../../components/BottomMenu/Controller/BottomMenuController';
 import styles from '../../../components/GlobalStyle/GlobalStyle'
 import customStyles from './VisualizacaoContaEnergiaStyle'
-import { format , addDays } from 'date-fns';
+import { format , addDays, subDays } from 'date-fns';
 import { MaskService } from 'react-native-masked-text';
 import { CustomParses } from '../../../utils/CustomParses';
 
@@ -18,6 +18,8 @@ export default VisualizacaoContaEnergiaView = (props) => {
     }
 
     const dataVencimentoConta = format( addDays(new Date(props.userInfos.contaLuz.dataValidade), 1), 'dd');
+    const inicioMedicao = format( subDays(new Date(props.userInfos.contaLuz.dataValidade), 10), 'dd');
+    const fimMedicao = format( subDays(new Date(props.userInfos.contaLuz.dataValidade), 7), 'dd');
     
     const valorKwh = (props.userInfos.contaLuz.valorPago - props.userInfos.contaLuz.valorTributos) / props.userInfos.contaLuz.kwhConta
     const valorKwhFormatado = MaskService.toMask('money', valorKwh, {
@@ -34,6 +36,43 @@ export default VisualizacaoContaEnergiaView = (props) => {
     });
     
     const dataUltimaAtualizacao = CustomParses.parseDateWithZeroHoursToString(props.userInfos.contaLuz.dataRegistro);
+    
+    const renderBandeiraVigente = () => {
+
+      const bandeiraVigente = props.userInfos.consumo.bandeira.nome;
+
+      return(
+        <View style={[customStyles.container_labels, styles.margin_bottom_8]}>
+          <Text style={[styles.bold_black_text_18]}>Bandeira Vigente:</Text>
+          <Text style={[styles.black_text_18]}>{bandeiraVigente}</Text>
+        </View>
+      )
+    }
+
+    const renderCalculoResult = () => {
+
+      return (
+        <View style={[styles.margin_bottom_24]}>
+          <Text style={[
+            styles.bold_black_text_22, 
+            styles.text_align_center,]}>
+            Consumo Atual
+          </Text>
+          <Text style={[
+            styles.text_align_center]}>
+            {format(new Date(props.userInfos.consumo.dataMedicao), 'dd/MM/yyyy hh:mm:ss')}
+          </Text>
+
+          <Text style={[customStyles.money_text, styles.bold_black_text_22, styles.text_align_center]}>
+            {CustomParses.parseDoubleToCurrency(props.userInfos.consumo.custoTotal)}
+          </Text>
+
+          <Text style={[customStyles.kwh_text, styles.black_text_20, styles.text_align_center]}>
+            {props.userInfos.consumo.kwh} kWh
+          </Text>
+        </View>
+      )
+    }
 
     return (
 
@@ -50,9 +89,14 @@ export default VisualizacaoContaEnergiaView = (props) => {
                   <Text style={[styles.bold_black_text_18]}>Dia de vencimento:</Text>
                   <Text style={[styles.black_text_18]}>{dataVencimentoConta} de cada mês</Text>
                 </View>
+
+                <View style={[customStyles.container_labels, styles.margin_bottom_8]}>
+                  <Text style={[styles.bold_black_text_18]}>Dia de medição:</Text>
+                  <Text style={[styles.black_text_18]}>Entre {inicioMedicao} e {fimMedicao} do mês</Text>
+                </View>
                 
                 <View style={[customStyles.container_labels, styles.margin_bottom_8]}>
-                  <Text style={[styles.bold_black_text_18]}>Valor por kWh:</Text>
+                  <Text style={[styles.bold_black_text_18]}>Valor médio kWh:</Text>
                   <Text style={[styles.black_text_18]}>{valorKwhFormatado}</Text>
                 </View>
 
@@ -60,33 +104,22 @@ export default VisualizacaoContaEnergiaView = (props) => {
                   <Text style={[styles.bold_black_text_18]}>Valor do CIP/COSIP:</Text>
                   <Text style={[styles.black_text_18]}>{valorCipFormatado}</Text>
                 </View>
+
+                <View style={[customStyles.container_labels, styles.margin_bottom_8]}>
+                  <Text style={[styles.bold_black_text_18]}>Grupo:</Text>
+                  <Text style={[styles.black_text_18]}>B2 - Residencial</Text>
+                </View>
+
+                {props.userInfos.hasOwnProperty("consumo") && renderBandeiraVigente()}
                 
                 <View style={[customStyles.container_labels]}>
                   <Text style={[styles.bold_black_text_18]}>Última atualização:</Text>
                   <Text style={[styles.black_text_18]}>{dataUltimaAtualizacao}</Text>
                 </View>
+                
               </View>
 
-              <View style={[styles.margin_bottom_24, {display: 'none'}]}>
-                <Text style={[
-                  styles.bold_black_text_22, 
-                  styles.text_align_center,]}>
-                  Consumo Atual
-                </Text>
-                <Text style={[
-                  styles.text_align_center, 
-                  styles.margin_bottom_8]}>
-                  (último valor calculado)
-                </Text>
-
-                <Text style={[customStyles.money_text, styles.bold_black_text_22, styles.text_align_center]}>
-                  R$ 98,12
-                </Text>
-
-                <Text style={[customStyles.kwh_text, styles.black_text_20, styles.text_align_center]}>
-                  125 kWh
-                </Text>
-              </View>
+              {(props.userInfos.consumo != null) && renderCalculoResult()}
 
               <TouchableOpacity style={styles.margin_bottom_32} onPress={() => props.goTo('EntendaSuaConta', '')}>
                 <View style={[

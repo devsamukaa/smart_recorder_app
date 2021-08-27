@@ -25,9 +25,6 @@ export default StyleSheet.create({
         paddingRight: 10,
     },
 
-    container_input: {
-    },
-
     dark_text_input: {
         color: '#fff',
         fontSize: 18,

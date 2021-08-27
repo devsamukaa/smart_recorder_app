@@ -1,7 +1,19 @@
 
-import { parse, isDate, format, addDays } from "date-fns"
+import { parse, isDate, format, addDays } from "date-fns";
+import { MaskService } from 'react-native-masked-text';
 
 export class CustomParses {
+
+    static parseDoubleToCurrency = (value) => {
+
+        value = MaskService.toMask('money', value, {
+            unit: 'R$ ',
+            separator: ',',
+            delimiter: '.'
+        });
+
+        return value;
+    }
 
     static parseCurrencyString = (value, originalValue) => {
 

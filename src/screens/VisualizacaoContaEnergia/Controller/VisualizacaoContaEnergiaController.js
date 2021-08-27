@@ -11,7 +11,7 @@ const VisualizacaoContaEnergiaController = (props) => {
     console.log("Component Did Mount");
 
     //Alterando Titulo da Pagina
-    props.navigation.setParams({titlePage: "Dados da C. de Energia"});
+    props.navigation.setParams({titlePage: "Conta de Energia"});
     return
 
   }, []);
