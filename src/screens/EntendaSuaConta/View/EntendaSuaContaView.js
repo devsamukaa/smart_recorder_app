@@ -87,7 +87,7 @@ export default EntendaSuaContaView = (props) => {
 
           <BottomMenuController 
             userInfos={props.userInfos} 
-            activeBar="home" //apagar caso seja uma tela que não represente um ícone de baixo
+            activeBar="conta" //apagar caso seja uma tela que não represente um ícone de baixo
             navigation={props.navigation}
             />
         </View> 
