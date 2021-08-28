@@ -162,4 +162,5 @@ export default BottomMenuView = (props) => {
     }
  
     return renderMenuItems(props.userInfos, props.activeBar);
+    
 }

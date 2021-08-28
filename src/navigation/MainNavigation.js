@@ -14,6 +14,8 @@ import CadastroContaEnergiaController from '../screens/CadastroContaEnergia/Cont
 import VisualizacaoContaEnergiaController from '../screens/VisualizacaoContaEnergia/Controller/VisualizacaoContaEnergiaController';
 import CadastroController from '../screens/Cadastro/Controller/CadastroController';
 import EntendaSuaContaController from '../screens/EntendaSuaConta/Controller/EntendaSuaContaController';
+import ConfiguracoesController from '../screens/Configuracoes/Controller/ConfiguracoesController'
+import AlterarSenhaController from '../screens/AlterarSenha/Controller/AlterarSenhaController';
 
 //Aqui criamos o DrawerNavigator. Ele é um objeto que criará o header
 const AppLogged = createDrawerNavigator(
@@ -30,6 +32,8 @@ const AppLogged = createDrawerNavigator(
       CadastroContaEnergia : CadastroContaEnergiaController,
       VisualizacaoContaEnergia : VisualizacaoContaEnergiaController,
       EntendaSuaConta: EntendaSuaContaController,
+      Configuracoes: ConfiguracoesController,
+      AlterarSenha: AlterarSenhaController,
     }),
   },
   {
