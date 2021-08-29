@@ -149,7 +149,14 @@ export default LoginView = (props) => {
                         onSubmitEditing={(event) => handleSubmit()}
                         />
                         {(errors.senha && touched.senha) && <Text style={[styles.error_dark_minor_text]}>{errors.senha}</Text>}
+
+                        <Text 
+                            style={[styles.black_text_18, styles.white_text, styles.padding_vertical_8, {alignSelf: 'flex-end'}]}
+                            onPress={props.goToEsqueceuSenha}>
+                            Esqueceu a senha?
+                        </Text>
                     </View>
+                    
                     
 
                     <TouchableOpacity onPress={handleSubmit}>

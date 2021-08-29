@@ -80,6 +80,13 @@ const LoginController = (props) => {
     props.navigation.dispatch(navigateAction);
   }
 
+  const goToEsqueceuSenha = () => {
+    const navigateAction = NavigationActions.navigate({
+      routeName: "EsqueceuSenha",
+    });
+    props.navigation.dispatch(navigateAction);
+  }
+
   const callbackOnFocus = () => {
     hideMessageError();
   }
@@ -97,6 +104,8 @@ const LoginController = (props) => {
         hideMessageError = {hideMessageError}
 
         goToCadastro = {goToCadastro}
+        goToEsqueceuSenha = {goToEsqueceuSenha}
+        
       />
   )
 }
