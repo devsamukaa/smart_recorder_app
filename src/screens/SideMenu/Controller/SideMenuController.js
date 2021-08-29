@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import SideMenuView from '../View/SideMenuView';
 import { NavigationActions } from 'react-navigation';
 import { ManageSharedPreferences } from '../../../utils/ManageSharedPreferences';

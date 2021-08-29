@@ -40,7 +40,7 @@ export default StyleSheet.create({
     },
 
     colunaIcms: {
-        width: 60,
+        width: 70,
     },
 
     colunaValor: {

@@ -59,12 +59,12 @@ export default StyleSheet.create({
 
     border_bottom_light_input: {
         borderBottomColor: '#020C53',
-        borderBottomWidth: .9,
+        borderBottomWidth: 0.4,
     },
     
     border_bottom_dark_input: {
         borderBottomColor: '#ffffff',
-        borderBottomWidth: .9,
+        borderBottomWidth: .4,
     },
 
     flex_direction_row: {
@@ -107,12 +107,20 @@ export default StyleSheet.create({
         marginBottom: 32,
     },
 
+    margin_bottom_40: {
+        marginBottom: 40,
+    },
+
     white_text: {
         color: '#fff',
     },
 
     orange_text: {
         color: '#FB8500',
+    },
+
+    orange_text_2: {
+        color: '#ffb703',
     },
 
     black_text: {

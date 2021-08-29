@@ -40,6 +40,7 @@ export default CadastroView = (props) => {
         .required('Insria o e-mail'),
       cpf: yup
         .string()
+        .min(14, "Digite um CPF válido")
         .required('Insira o CPF'),
       senha: yup
         .string()
@@ -272,7 +273,7 @@ export default CadastroView = (props) => {
                     </View>
 
                     <TouchableOpacity onPress={handleSubmit}>
-                        <View style={[styles.orange_button]}>
+                        <View style={[styles.orange_button, styles.margin_bottom_40]}>
 
                             {(!props.isLoading) && 
                               <Text style={styles.text_orange_button}>
@@ -287,6 +288,17 @@ export default CadastroView = (props) => {
                 )}
 
               </Formik>
+
+              <View style={[]}>
+                <View style={[styles.margin_bottom_16]}>
+                    <Text style={[styles.black_text_18, styles.white_text, styles.text_align_center]}>Já é cadastrado?</Text>
+                </View>
+                <TouchableOpacity onPress={() => {props.goToLogin()}}>
+                    <View style={styles.blue_button}>
+                        <Text style={[styles.bold_black_text_20, styles.orange_text_2, styles.text_align_center]}>Fazer Login</Text>
+                    </View>                             
+                </TouchableOpacity>
+              </View>
               
             </View>
           </ScrollView>

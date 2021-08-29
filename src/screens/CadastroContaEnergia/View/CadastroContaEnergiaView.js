@@ -2,10 +2,10 @@ import React, {useState} from 'react';
 import { KeyboardAvoidingView, View, Text, ScrollView, ActivityIndicator } from 'react-native';
 import BottomMenuController from '../../../components/BottomMenu/Controller/BottomMenuController';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { TextInputMask } from 'react-native-masked-text'
+import { TextInputMask } from 'react-native-masked-text';
 import { Formik } from 'formik';
 import * as yup from 'yup';
-import styles from '../../../components/GlobalStyle/GlobalStyle'
+import styles from '../../../components/GlobalStyle/GlobalStyle';
 import customStyles from './CadastroContaEnergiaStyle'
 import ErrorMessage from '../../../components/ErrorMessage/ErrorMessage';
 import { CustomParses } from '../../../utils/CustomParses';

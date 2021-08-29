@@ -23,7 +23,7 @@ export default ConfiguracoesView = (props) => {
           <ScrollView style={[styles.container_scroll_screen]}>
             <View style={[styles.internal_container]}>
 
-              <TouchableOpacity onPress={() => console.log('editar peril')}>
+              <TouchableOpacity onPress={() => props.goTo('AtualizarPerfil')}>
                 <View style={[styles.padding_vertical_16, styles.border_bottom_blue]}>
 
                     <Text style={[styles.black_text_20]}>Atualizar Perfil</Text>

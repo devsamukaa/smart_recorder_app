@@ -38,7 +38,7 @@ export default EntendaSuaContaView = (props) => {
               </Text>
 
               <Text style={[styles.black_text_18, styles.padding_horizontal_8, styles.margin_bottom_8]}>
-                <Text style={[styles.bold_black_text_18]}>Tarifa de Energia (TE)</Text> - valor cobrado ao consumidor.
+                <Text style={[styles.bold_black_text_18]}>Tarifa de Energia (TE)</Text> - valor cobrado ao consumidor pelo uso da energia elétrica.
               </Text>
 
               <Text style={[styles.orange_text, styles.bold_black_text_18, styles.margin_bottom_8]}>
@@ -66,15 +66,15 @@ export default EntendaSuaContaView = (props) => {
               </Text>
 
               <Text style={[styles.black_text_18, styles.padding_horizontal_8, styles.margin_bottom_8]}>
-                <Text style={[styles.bold_black_text_18]}>PIS</Text> - Ajuda completar a renda do governo para pagamento do seguro-desemprego, abono e participações dos órgãos e entidades tanto para trabalhadores públicos e privados. Atualmente é combrado 0,59% do seu consumo de energia.
+                <Text style={[styles.bold_black_text_18]}>PIS</Text> - Ajuda completar a renda do governo para pagamento do seguro-desemprego, abono e participações dos órgãos e entidades tanto para trabalhadores públicos e privados. Atualmente pode ser cobrado entre 0,59 à 0,99% da soma dos valores do uso do centro de distribuição, consumo elétrico e bandeira sem considerar o ICMS.
               </Text>
 
               <Text style={[styles.black_text_18, styles.padding_horizontal_8, styles.margin_bottom_8]}>
-                <Text style={[styles.bold_black_text_18]}>COFINS</Text> - Também tem colaboração de caráter social. É cobrado 2,71% do consumo de energia.
+                <Text style={[styles.bold_black_text_18]}>COFINS</Text> - Também tem colaboração de caráter social. Pode ser cobrado de 1,8% à 4,8% da soma dos valores do uso do centro de distribuição, consumo elétrico e bandeira sem considerar o ICMS.
               </Text>
 
               <Text style={[styles.black_text_18, styles.padding_horizontal_8, styles.margin_bottom_8]}>
-                <Text style={[styles.bold_black_text_18]}>ICMS</Text> - Tributo de caráter estadual, onde cada estado possui uma alíquota diferente. Na conta de luz ele representa a maior parcela de taxas para o consumidor.
+                <Text style={[styles.bold_black_text_18]}>ICMS</Text> - Tributo de caráter estadual, onde cada estado possui uma alíquota diferente. Na conta de luz ele representa a maior parcela de taxas para o consumidor e incide em todos os valores, inclusive nos impostos de PIS e COFINS, porém com excessão do CIP/COSIP.
               </Text>
 
               <Text style={[styles.black_text_18, styles.padding_horizontal_8, styles.margin_bottom_8]}>

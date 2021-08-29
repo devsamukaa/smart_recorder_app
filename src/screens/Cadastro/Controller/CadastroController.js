@@ -77,6 +77,13 @@ const CadastroController = (props) => {
 
   }
 
+  const goToLogin = () => {
+    const navigateAction = NavigationActions.navigate({
+      routeName: "Login",
+    });
+    props.navigation.dispatch(navigateAction);
+  }
+
   const goToHome = (userInfos) => {
     const navigateAction = NavigationActions.navigate({
       routeName: "Home",
@@ -91,6 +98,8 @@ const CadastroController = (props) => {
         navigation = {props.navigation}
 
         cadastraPessoa = {cadastraPessoa}
+
+        goToLogin = {goToLogin}
 
         isLoading = {isLoading}
         messageError = {messageError}

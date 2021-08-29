@@ -3,10 +3,19 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#1b4275",        
+        backgroundColor: "#020C53",        
+    },
+    container_logo: {
+        marginTop: 70,
+        
+    },
+    logo: {
+        width: '86%',
+        alignSelf: 'center',
+        borderRadius: 4,
     },
     navSectionStyle: {
-        marginTop: 80,
+        marginTop: 30,
         paddingLeft: 25,
     },
     navItemStyle: {
@@ -14,7 +23,7 @@ export default StyleSheet.create({
     },
     navItemTitleStyle: {
         fontSize: 18,
-        color: "#ffffff",   
+        color: "#ffb703",   
         fontWeight: "bold",
         marginTop: 30,
     },
