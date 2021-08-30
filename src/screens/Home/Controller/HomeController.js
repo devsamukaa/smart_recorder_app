@@ -29,7 +29,7 @@ const HomeController = (props) => {
 
   const unsubscribe = props.navigation.addListener('didFocus', () => {
       console.log('focussed');
-      console.log("userInfos focussed", userInfos);
+      console.log("userInfos focussed pegando do novo prefs", userInfos);
       console.log("userInfosParam focussed", userInfosParam);
 
       if(userInfosParam != null && userInfosParam != '-1') {
