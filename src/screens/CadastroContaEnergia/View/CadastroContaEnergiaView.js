@@ -3,14 +3,20 @@ import { KeyboardAvoidingView, View, Text, ScrollView, ActivityIndicator } from 
 import BottomMenuController from '../../../components/BottomMenu/Controller/BottomMenuController';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { TextInputMask } from 'react-native-masked-text';
+import { Icon } from 'react-native-elements';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import styles from '../../../components/GlobalStyle/GlobalStyle';
-import customStyles from './CadastroContaEnergiaStyle'
+import customStyles from './CadastroContaEnergiaStyle';
 import ErrorMessage from '../../../components/ErrorMessage/ErrorMessage';
 import { CustomParses } from '../../../utils/CustomParses';
+import MoreInfos from '../../../components/MoreInfos/MoreInfos';
 
 export default CadastroContaEnegiaView = (props) => {
+
+    const [imageSrc, setImageSrc] = useState(require('../../../assets/images/consumo_mes.jpg'));
+    const [description, setDescription] = useState('');
+    const [isShowingMoreInfos, setShowingMoreinfos] = useState(false);
 
     const [vencimentoContaInput, setVencimentoContaInput] = useState(null)
     const [totalPagoInput, setTotalPagoInput] = useState(null)
@@ -22,6 +28,14 @@ export default CadastroContaEnegiaView = (props) => {
     //Verifica se device é iOS
     if(Platform.OS === "ios"){
       behavior = "padding";
+    }
+
+    const showMoreInfos = (imageSrcParam, descriptionParam) => {
+
+      setImageSrc(imageSrcParam);
+      setDescription(descriptionParam);
+      setShowingMoreinfos(true);
+      
     }
 
     const placeholderTextColor = '#acb6fd';
@@ -62,12 +76,19 @@ export default CadastroContaEnegiaView = (props) => {
       valorCip: props.userInfos.contaLuz.valorCip,
     } :
     {consumoMes: '', vencimentoConta: '', totalPago: '', totalTributos: '', valorCip: ''};
-    
 
     return (
 
       <KeyboardAvoidingView style={styles.container} behavior={behavior} enabled
                   keyboardVerticalOffset={100}>
+        
+        <MoreInfos 
+          imageSrc = {imageSrc}
+          description = {description}
+          isShowingMoreInfos = {isShowingMoreInfos}
+          setShowingMoreinfos = {setShowingMoreinfos}
+        />
+
         <View style={styles.container_app}> 
           <ScrollView style={styles.container_scroll_screen}>
             <View style={styles.internal_container}>
@@ -110,6 +131,13 @@ export default CadastroContaEnegiaView = (props) => {
 
                       <View>
 
+                        <View 
+                        style={[
+                          styles.flex_direction_row,
+                          styles.flex_justify_center,
+                          styles.flex_align_items_center,
+                        ]}>
+
                         <TextInputMask
                           name='consumoMes'
                           placeholder='Ex: 133'
@@ -118,6 +146,7 @@ export default CadastroContaEnegiaView = (props) => {
                             styles.light_text_input, 
                             styles.container_input,
                             styles.border_bottom_light_input,
+                            styles.flex_grow,
                           ]}
                           type={'only-numbers'}
                           value={values.consumoMes}
@@ -128,6 +157,19 @@ export default CadastroContaEnegiaView = (props) => {
                           onSubmitEditing={() => { if(vencimentoContaInput != null) {vencimentoContaInput.focus()} }}
                           blurOnSubmit={false}
                         />
+                        <Icon 
+                          name='question'
+                          type='font-awesome'
+                          color='#020C53'
+                          onPress={() => {
+                            showMoreInfos(
+                              require ('../../../assets/images/consumo_mes.jpg'),
+                              <>O <Text style={[styles.bold_black_text_20]}>Consumo do mês</Text> é localizado na área central da conta, na esquerda, dentro de uma tabela com o título "Dados de Medição".</>
+                            );
+                          }}
+                          iconStyle={[styles.padding_all_8]}
+                        />
+                      </View>
 
                         {(errors.consumoMes && touched.consumoMes) && <Text style={[styles.error_minor_text,]}>{errors.consumoMes}</Text>}
                         
@@ -143,28 +185,49 @@ export default CadastroContaEnegiaView = (props) => {
                       </View>
 
                       <View>
-
-                        <TextInputMask
-                          refInput={(input) => { setVencimentoContaInput(input) }}
-                          name='vencimentoConta'
-                          placeholder='Ex: 26/08/2021'
-                          placeholderTextColor={placeholderTextColor}
+                        
+                        <View 
                           style={[
-                            styles.light_text_input, 
-                            styles.container_input,
-                            styles.border_bottom_light_input,
-                          ]}
-                          type={'datetime'}
-                          options={{
-                            format: 'DD/MM/YYYY'
-                          }}
-                          value={values.vencimentoConta}
-                          onChangeText={handleChange('vencimentoConta')}
-                          handleBlur={handleBlur('vencimentoConta')}
-                          returnKeyType="next"
-                          onSubmitEditing={() => { if(totalPagoInput != null) {totalPagoInput.focus()} }}
-                          blurOnSubmit={false}
-                          />
+                            styles.flex_direction_row,
+                            styles.flex_justify_center,
+                            styles.flex_align_items_center,
+                          ]}>
+
+                          <TextInputMask
+                            refInput={(input) => { setVencimentoContaInput(input) }}
+                            name='vencimentoConta'
+                            placeholder='Ex: 26/08/2021'
+                            placeholderTextColor={placeholderTextColor}
+                            style={[
+                              styles.light_text_input, 
+                              styles.container_input,
+                              styles.border_bottom_light_input,
+                              styles.flex_grow,
+                            ]}
+                            type={'datetime'}
+                            options={{
+                              format: 'DD/MM/YYYY'
+                            }}
+                            value={values.vencimentoConta}
+                            onChangeText={handleChange('vencimentoConta')}
+                            handleBlur={handleBlur('vencimentoConta')}
+                            returnKeyType="next"
+                            onSubmitEditing={() => { if(totalPagoInput != null) {totalPagoInput.focus()} }}
+                            blurOnSubmit={false}
+                            />
+                            <Icon 
+                              name='question'
+                              type='font-awesome'
+                              color='#020C53'
+                              onPress={() => {
+                                showMoreInfos(
+                                  require ('../../../assets/images/vencimento.jpg'),
+                                  <>O <Text style={[styles.bold_black_text_20]}>Vencimento</Text> é localizado na área superior da conta, na direita, dentro de uma tabela com o título "Dados da Conta".</>
+                                );
+                              }}
+                              iconStyle={[styles.padding_all_8]}
+                            />
+                        </View>
 
                         {(errors.vencimentoConta && touched.vencimentoConta) && <Text style={[styles.error_minor_text]}>{errors.vencimentoConta}</Text>}
                         
@@ -180,32 +243,53 @@ export default CadastroContaEnegiaView = (props) => {
                       </View>
 
                       <View>
+                          
+                        <View 
+                        style={[
+                          styles.flex_direction_row,
+                          styles.flex_justify_center,
+                          styles.flex_align_items_center,
+                        ]}>
                       
-                        <TextInputMask
-                          refInput={(input) => { setTotalPagoInput(input) }}
-                          name='totalPago'
-                          placeholder='Ex: R$ 112,31'
-                          options={{
-                            precision: 2,
-                            separator: ',',
-                            delimiter: '.',
-                            unit: 'R$ ',
-                            suffixUnit: ''
-                          }}
-                          placeholderTextColor={placeholderTextColor}
-                          style={[
-                            styles.light_text_input, 
-                            styles.container_input,
-                            styles.border_bottom_light_input,
-                          ]}
-                          type={'money'}
-                          value={values.totalPago}
-                          onChangeText={handleChange('totalPago')}
-                          handleBlur={handleBlur('totalPago')}
-                          returnKeyType="next"
-                          onSubmitEditing={() => { if(totalTributosInput != null) {totalTributosInput.focus()} }}
-                          blurOnSubmit={false}
-                        />
+                          <TextInputMask
+                            refInput={(input) => { setTotalPagoInput(input) }}
+                            name='totalPago'
+                            placeholder='Ex: R$ 112,31'
+                            options={{
+                              precision: 2,
+                              separator: ',',
+                              delimiter: '.',
+                              unit: 'R$ ',
+                              suffixUnit: ''
+                            }}
+                            placeholderTextColor={placeholderTextColor}
+                            style={[
+                              styles.light_text_input, 
+                              styles.container_input,
+                              styles.border_bottom_light_input,
+                              styles.flex_grow,
+                            ]}
+                            type={'money'}
+                            value={values.totalPago}
+                            onChangeText={handleChange('totalPago')}
+                            handleBlur={handleBlur('totalPago')}
+                            returnKeyType="next"
+                            onSubmitEditing={() => { if(totalTributosInput != null) {totalTributosInput.focus()} }}
+                            blurOnSubmit={false}
+                          />
+                          <Icon 
+                            name='question'
+                            type='font-awesome'
+                            color='#020C53'
+                            onPress={() => {
+                              showMoreInfos(
+                                require ('../../../assets/images/total_a_pagar.jpg'),
+                                <>O <Text style={[styles.bold_black_text_20]}>Total a Pagar</Text> é localizado na área superior da conta, na direita, dentro de uma tabela com o título "Dados da Conta".</>
+                              );
+                            }}
+                            iconStyle={[styles.padding_all_8]}
+                          />
+                        </View>
 
                         {(errors.totalPago && touched.totalPago) && <Text style={[styles.error_minor_text,]}>{errors.totalPago}</Text>}
                         
@@ -221,32 +305,52 @@ export default CadastroContaEnegiaView = (props) => {
                       </View>
 
                       <View>
-                      
-                        <TextInputMask
-                          refInput={(input) => { setTotalTributosInput(input) }}
-                          name='totalTributos'
-                          placeholder='Ex: R$ 14,89'
-                          options={{
-                            precision: 2,
-                            separator: ',',
-                            delimiter: '.',
-                            unit: 'R$ ',
-                            suffixUnit: ''
-                          }}
-                          placeholderTextColor={placeholderTextColor}
+
+                        <View 
                           style={[
-                            styles.light_text_input, 
-                            styles.container_input,
-                            styles.border_bottom_light_input,
-                          ]}
-                          type={'money'}
-                          value={values.totalTributos}
-                          onChangeText={handleChange('totalTributos')}
-                          handleBlur={handleBlur('totalTributos')}
-                          returnKeyType="next"
-                          onSubmitEditing={() => { if(valorCipInput != null) {valorCipInput.focus()} }}
-                          blurOnSubmit={false}
-                        />
+                            styles.flex_direction_row,
+                            styles.flex_justify_center,
+                            styles.flex_align_items_center,
+                          ]}>
+                          <TextInputMask
+                            refInput={(input) => { setTotalTributosInput(input) }}
+                            name='totalTributos'
+                            placeholder='Ex: R$ 14,89'
+                            options={{
+                              precision: 2,
+                              separator: ',',
+                              delimiter: '.',
+                              unit: 'R$ ',
+                              suffixUnit: ''
+                            }}
+                            placeholderTextColor={placeholderTextColor}
+                            style={[
+                              styles.light_text_input, 
+                              styles.container_input,
+                              styles.border_bottom_light_input,
+                              styles.flex_grow,
+                            ]}
+                            type={'money'}
+                            value={values.totalTributos}
+                            onChangeText={handleChange('totalTributos')}
+                            handleBlur={handleBlur('totalTributos')}
+                            returnKeyType="next"
+                            onSubmitEditing={() => { if(valorCipInput != null) {valorCipInput.focus()} }}
+                            blurOnSubmit={false}
+                          />
+                          <Icon 
+                            name='question'
+                            type='font-awesome'
+                            color='#020C53'
+                            onPress={() => {
+                              showMoreInfos(
+                                require ('../../../assets/images/total_tributos.jpg'),
+                                <>O <Text style={[styles.bold_black_text_20]}>Total dos Tributos</Text> é localizado na área inferior da conta. É um dos últimos campos nas letras menores, que são as "Descrições de Faturamento"</>
+                              );
+                            }}
+                            iconStyle={[styles.padding_all_8]}
+                          />
+                        </View>
 
                         {(errors.totalTributos && touched.totalTributos) && <Text style={[styles.error_minor_text]}>{errors.totalTributos}</Text>}
 
@@ -263,30 +367,50 @@ export default CadastroContaEnegiaView = (props) => {
 
                       <View>
                       
-                        <TextInputMask
-                          refInput={(input) => { setValorCipInput(input) }}
-                          name='valorCip'
-                          placeholder='Ex: R$ 5,74'
-                          options={{
-                            precision: 2,
-                            separator: ',',
-                            delimiter: '.',
-                            unit: 'R$ ',
-                            suffixUnit: ''
-                          }}
-                          placeholderTextColor={placeholderTextColor}
+                        <View 
                           style={[
-                            styles.light_text_input, 
-                            styles.container_input,
-                            styles.border_bottom_light_input,
-                          ]}
-                          type={'money'}
-                          value={values.valorCip}
-                          onChangeText={handleChange('valorCip')}
-                          handleBlur={handleBlur('valorCip')}
-                          returnKeyType='go'
-                          onSubmitEditing={(event) => handleSubmit()}
-                        />
+                            styles.flex_direction_row,
+                            styles.flex_justify_center,
+                            styles.flex_align_items_center,
+                          ]}>
+                          <TextInputMask
+                            refInput={(input) => { setValorCipInput(input) }}
+                            name='valorCip'
+                            placeholder='Ex: R$ 5,74'
+                            options={{
+                              precision: 2,
+                              separator: ',',
+                              delimiter: '.',
+                              unit: 'R$ ',
+                              suffixUnit: ''
+                            }}
+                            placeholderTextColor={placeholderTextColor}
+                            style={[
+                              styles.light_text_input, 
+                              styles.container_input,
+                              styles.border_bottom_light_input,
+                              styles.flex_grow,
+                            ]}
+                            type={'money'}
+                            value={values.valorCip}
+                            onChangeText={handleChange('valorCip')}
+                            handleBlur={handleBlur('valorCip')}
+                            returnKeyType='go'
+                            onSubmitEditing={(event) => handleSubmit()}
+                          />
+                          <Icon 
+                            name='question'
+                            type='font-awesome'
+                            color='#020C53'
+                            onPress={() => {
+                              showMoreInfos(
+                                require ('../../../assets/images/valor_cip.jpg'),
+                                <>O valor do <Text style={[styles.bold_black_text_20]}>CIP ou COSIP</Text> é localizado na área inferior da conta. É um dos últimos campos nas letras menores, que são as "Descrições de Faturamento".</>
+                              );
+                            }}
+                            iconStyle={[styles.padding_all_8]}
+                          />
+                        </View>
 
                         {(errors.valorCip && touched.valorCip) && <Text style={[styles.error_minor_text,]}>{errors.valorCip}</Text>}
 

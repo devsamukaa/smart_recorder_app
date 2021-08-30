@@ -1,18 +1,24 @@
 import React, {useState} from 'react';
 import { KeyboardAvoidingView, View, Text, ScrollView, ActivityIndicator } from 'react-native';
+import {Icon} from 'react-native-elements';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { TextInputMask } from 'react-native-masked-text'
+import { TextInputMask } from 'react-native-masked-text';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import BottomMenuController from '../../../components/BottomMenu/Controller/BottomMenuController';
 import customStyles from './HomeStyle';
 import styles from '../../../components/GlobalStyle/GlobalStyle';
 import { CustomParses } from '../../../utils/CustomParses';
+import MoreInfos from '../../../components/MoreInfos/MoreInfos';
 import {format} from 'date-fns';
 
 export default HomeView = (props) => {
 
     const [kwhRelogioInput, setKwhRelogioInput] = useState(null);
+
+    const [imageSrc, setImageSrc] = useState(require('../../../assets/images/consumo_mes.jpg'));
+    const [description, setDescription] = useState('');
+    const [isShowingMoreInfos, setShowingMoreinfos] = useState(false);
 
     //Adicionar padding somente para iOS
     let behavior = "";
@@ -182,6 +188,14 @@ export default HomeView = (props) => {
       )
     }
 
+    const showMoreInfos = (imageSrcParam, descriptionParam) => {
+
+      setImageSrc(imageSrcParam);
+      setDescription(descriptionParam);
+      setShowingMoreinfos(true);
+      
+    }
+
     const renderCalculoConsumo = () => {
 
       const formValidationSchema = yup.object().shape({
@@ -231,23 +245,43 @@ export default HomeView = (props) => {
                       <Text style={[styles.black_text]}>Insira a <Text style={{fontFamily: 'Montserrat-Bold'}}>Leitura Atual</Text> da última conta recebida:</Text>
                     </View>
                     
-                    <TextInputMask
-                      name='kwhUltimaConta'
-                      placeholder='Ex: 29182'
-                      placeholderTextColor={placeholderTextColor}
+                    <View 
                       style={[
-                        styles.light_text_input, 
-                        styles.container_input,
-                        styles.border_bottom_light_input,
-                      ]}
-                      type={'only-numbers'}
-                      value={values.kwhUltimaConta}
-                      onChangeText={handleChange('kwhUltimaConta')}
-                      handleBlur={handleBlur('kwhUltimaConta')}
-                      returnKeyType="next"
-                      onSubmitEditing={() => { if(kwhRelogioInput != null) {kwhRelogioInput.focus()} }}
-                      blurOnSubmit={false}
-                    />
+                        styles.flex_direction_row,
+                        styles.flex_justify_center,
+                        styles.flex_align_items_center,
+                      ]}>
+                      <TextInputMask
+                        name='kwhUltimaConta'
+                        placeholder='Ex: 29182'
+                        placeholderTextColor={placeholderTextColor}
+                        style={[
+                          styles.light_text_input, 
+                          styles.container_input,
+                          styles.border_bottom_light_input,
+                          styles.flex_grow,
+                        ]}
+                        type={'only-numbers'}
+                        value={values.kwhUltimaConta}
+                        onChangeText={handleChange('kwhUltimaConta')}
+                        handleBlur={handleBlur('kwhUltimaConta')}
+                        returnKeyType="next"
+                        onSubmitEditing={() => { if(kwhRelogioInput != null) {kwhRelogioInput.focus()} }}
+                        blurOnSubmit={false}
+                      />
+                      <Icon 
+                        name='question'
+                        type='font-awesome'
+                        color='#020C53'
+                        onPress={() => {
+                          showMoreInfos(
+                            require ('../../../assets/images/leitura_atual.jpg'),
+                            <>A <Text style={[styles.bold_black_text_20]}>Leitura Atual</Text> está localizada na área central da conta, na esquerda, dentro de uma tabela com o título "Dados de Medição". Insira o valor de 5 dígitos.</>
+                          );
+                        }}
+                        iconStyle={[styles.padding_all_8]}
+                      />
+                    </View>
                     {(errors.kwhUltimaConta && touched.kwhUltimaConta) && <Text style={[styles.error_minor_text,]}>{errors.kwhUltimaConta}</Text>}
                   </View>
 
@@ -255,24 +289,46 @@ export default HomeView = (props) => {
                     <View style={styles.conatiner_top_text}>
                       <Text style={[styles.black_text]}>Insira o valor do <Text style={{fontFamily: 'Montserrat-Bold'}}>Relógio de Luz</Text>:</Text>
                     </View>
-                    
-                    <TextInputMask
-                      refInput={(input) => { setKwhRelogioInput(input) }}
-                      name='kwhRelogio'
-                      placeholder='Ex: 29382'
-                      placeholderTextColor={placeholderTextColor}
+
+                    <View 
                       style={[
-                        styles.light_text_input, 
-                        styles.container_input,
-                        styles.border_bottom_light_input,
-                      ]}
-                      type={'only-numbers'}
-                      value={values.kwhRelogio}
-                      onChangeText={handleChange('kwhRelogio')}
-                      handleBlur={handleBlur('kwhRelogio')}
-                      returnKeyType='go'
-                      onSubmitEditing={(event) => handleSubmit()}
-                    />
+                        styles.flex_direction_row,
+                        styles.flex_justify_center,
+                        styles.flex_align_items_center,
+                      ]}>
+                    
+                      <TextInputMask
+                          refInput={(input) => { setKwhRelogioInput(input) }}
+                          name='kwhRelogio'
+                          placeholder='Ex: 29382'
+                          placeholderTextColor={placeholderTextColor}
+                          style={[
+                            styles.light_text_input, 
+                            styles.container_input,
+                            styles.border_bottom_light_input,
+                            styles.flex_grow,
+                          ]}
+                          type={'only-numbers'}
+                          value={values.kwhRelogio}
+                          onChangeText={handleChange('kwhRelogio')}
+                          handleBlur={handleBlur('kwhRelogio')}
+                          returnKeyType='go'
+                          onSubmitEditing={(event) => handleSubmit()}
+                        />
+
+                        <Icon 
+                          name='question'
+                          type='font-awesome'
+                          color='#020C53'
+                          onPress={() => {
+                            showMoreInfos(
+                              require ('../../../assets/images/relogio.jpg'),
+                              <>Insira o valor de 5 dígitos que está destacado na imagem. Aplica-se também a medidores digitais.</>
+                            );
+                          }}
+                          iconStyle={[styles.padding_all_8]}
+                        />
+                    </View>
                     {(errors.kwhRelogio && touched.kwhRelogio) && <Text style={[styles.error_minor_text,]}>{errors.kwhRelogio}</Text>}
                   </View>
 
@@ -299,6 +355,14 @@ export default HomeView = (props) => {
 
       <KeyboardAvoidingView style={styles.container} behavior={behavior} enabled
                   keyboardVerticalOffset={100}>
+
+        <MoreInfos 
+          imageSrc = {imageSrc}
+          description = {description}
+          isShowingMoreInfos = {isShowingMoreInfos}
+          setShowingMoreinfos = {setShowingMoreinfos}
+        />
+
         <View style={styles.container_app}> 
           <ScrollView style={styles.container_scroll_screen}>
             <View style={styles.internal_container}>

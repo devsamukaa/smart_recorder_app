@@ -67,8 +67,28 @@ export default StyleSheet.create({
         borderBottomWidth: .4,
     },
 
+    flex_grow: {
+        flexGrow: 1,
+    },
+
     flex_direction_row: {
         flexDirection: 'row',
+    },
+
+    flex_justify_center: {
+        justifyContent: 'center',
+    },
+
+    flex_align_items_center: {
+        alignItems: 'center',
+    },
+
+    padding_all_8: {
+        padding: 8,
+    },
+
+    padding_all_12: {
+        padding: 12,
     },
 
     padding_bottom_8: {
@@ -260,4 +280,6 @@ export default StyleSheet.create({
     width_100: {
         width: '100%',
     }
+
+
 });
