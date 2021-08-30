@@ -10,7 +10,7 @@ const EntendaSuaContaController = (props) => {
     console.log("Component Did Mount");
 
     //Alterando Titulo da Pagina
-    props.navigation.setParams({titlePage: "Entenda sua conta"});
+    props.navigation.setParams({titlePage: "Entenda sua conta", showBackButton: true});
     return
 
   }, []);

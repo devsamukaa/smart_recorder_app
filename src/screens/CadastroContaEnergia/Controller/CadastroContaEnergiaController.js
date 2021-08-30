@@ -32,9 +32,9 @@ const CadastroContaEnergiaController = (props) => {
     console.log("Component Did Mount");
     
     if(action == 'editar'){
-      props.navigation.setParams({titlePage: "Atualização da C. de Energia"});
+      props.navigation.setParams({titlePage: "Atualização da C. de Energia", showBackButton: true});
     }else{
-      props.navigation.setParams({titlePage: "Cadastro da C. de Energia"});
+      props.navigation.setParams({titlePage: "Cadastro da C. de Energia", showBackButton: true});
     } 
     
     return

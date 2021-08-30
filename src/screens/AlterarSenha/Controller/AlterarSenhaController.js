@@ -30,7 +30,7 @@ const AlterarSenhaController = (props) => {
   useEffect(() => {
     console.log("Component Did Mount");
     
-    props.navigation.setParams({titlePage: "Atualização da senha"});
+    props.navigation.setParams({titlePage: "Atualização da senha", showBackButton: true});
     
     return
 

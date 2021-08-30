@@ -56,7 +56,7 @@ export default CadastroView = (props) => {
 
     return (
 
-      <KeyboardAvoidingView style={styles.container} behavior={behavior} enabled
+      <KeyboardAvoidingView style={[styles.container, styles.background_blue]} behavior={behavior} enabled
                   keyboardVerticalOffset={100}>
         <View style={[styles.container_app]}> 
           <ScrollView style={[styles.container_scroll_screen, styles.background_blue]}>

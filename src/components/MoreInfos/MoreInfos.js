@@ -7,6 +7,13 @@ import styles from '../GlobalStyle/GlobalStyle';
 
 export default MoreInfos = (props) => {
 
+    //Adicionar padding somente para iOS
+    let behavior = "";
+    //Verifica se device é iOS
+    if(Platform.OS === "ios"){
+      behavior = "padding";
+    }
+
     const hideMoreInfos = () => {
 
         props.setShowingMoreinfos(false);
@@ -33,12 +40,12 @@ export default MoreInfos = (props) => {
                     type='font-awesome'
                     color='#fff'
                     onPress={() => hideMoreInfos()}
-                    iconStyle={{fontSize:40, alignSelf: 'flex-end', marginBottom: 16}}
-                    containerStyle={[{width: 40, height: 40}]}
+                    iconStyle={{fontSize:40, alignSelf: 'flex-end'}}
+                    containerStyle={[{width: 60, height: 60}]}
                     />
                 </View>
         
-                <View style={customStyles.container_image}>
+                <View style={[customStyles.container_image]}>
                     <Image
                         style={customStyles.image}
                         resizeMode='contain'

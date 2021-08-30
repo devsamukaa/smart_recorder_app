@@ -30,7 +30,7 @@ const AtualizarPerfilController = (props) => {
   useEffect(() => {
     console.log("Component Did Mount");
     
-    props.navigation.setParams({titlePage: "Atualização de perfil"});
+    props.navigation.setParams({titlePage: "Atualização de perfil", showBackButton: true});
     
     return
 

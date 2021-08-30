@@ -1,6 +1,4 @@
 
-// import SharedPreferences from 'react-native-shared-preferences';
-
 import DefautPreference from 'react-native-default-preference';
 
 export class ManageSharedPreferences {
@@ -8,17 +6,11 @@ export class ManageSharedPreferences {
   static getUserInfos(callback) {
 
     try {
-      // SharedPreferences.getItem("userInfos", function(value){
-        
-      //   if(JSON.parse(value) != null){
-      //     callback(JSON.parse(value));
-      //   }else{
-      //     callback({notLogged: true});
-      //   }
-      // });
 
       DefautPreference.get('userInfos').then(function(value) {
-        if(JSON.parse(value) != null && JSON.parse(value) != ""){
+
+        console.log(value);
+        if(value != null && value != "" && value != undefined){
           callback(JSON.parse(value));
         }else{
           callback({notLogged: true});
@@ -35,11 +27,9 @@ export class ManageSharedPreferences {
   static async saveUserInfos(userInfos) {
     console.log(userInfos);
     try {
-      // SharedPreferences.setItem("userInfos", JSON.stringify(userInfos));
       DefautPreference.set('userInfos', JSON.stringify(userInfos)).then(function() {
         console.log("Gravou com sucesso!");
       })
-      // console.log("Gravou com sucesso!");
       return true;
     } catch (e) {
       console.log("Erro ao gravar");
@@ -49,7 +39,6 @@ export class ManageSharedPreferences {
 
   static async clearAllInfos() {
     try {
-      // SharedPreferences.clear();
       DefautPreference.clearAll();
       console.log("Apagou tudo!");
       return true;
