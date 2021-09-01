@@ -148,6 +148,16 @@ export default StyleSheet.create({
         fontSize: 16,
     },
 
+    black_text_14: {
+        fontFamily: 'Montserrat-Regular',
+        fontSize: 14,
+    },
+
+    black_text_16: {
+        fontFamily: 'Montserrat-Regular',
+        fontSize: 16,
+    },
+
     black_text_18: {
         fontFamily: 'Montserrat-Regular',
         fontSize: 18,

@@ -10,6 +10,7 @@ const SplashScreenController = (props) => {
   //Chamando apos o carregamento do componente
   useEffect(() => {
     console.log("Component Did Mount");
+    console.log("Samuel");
     
     ManageSharedPreferences.getUserInfos(setUserInfos); //Recebendo dados na home
     // ManageSharedPreferences.clearAllInfos(); //Recebendo dados na home

@@ -220,8 +220,12 @@ export default HomeView = (props) => {
       return(
         <View>
 
-          <View style={styles.conatiner_top_text, styles.margin_bottom_16}>
+          <View style={styles.conatiner_top_text, styles.margin_bottom_8}>
             <Text style={[styles.bold_orange_high_text]}>Descubra quanto irá pagar na conta de luz agora mesmo!</Text>
+          </View>
+
+          <View style={styles.conatiner_top_text, styles.margin_bottom_16}>
+            <Text style={[styles.black_text]}><Text style={[styles.bold_black_text]}>Dica!💡</Text> Caso tenha dúvidas sobre os valores, toque sobre a interrogação ao lado do campo para saber onde encontrá-los.💡</Text>
           </View>
           
           <Formik
@@ -263,6 +267,7 @@ export default HomeView = (props) => {
                         ]}
                         type={'only-numbers'}
                         value={values.kwhUltimaConta}
+                        maxLength={5}
                         onChangeText={handleChange('kwhUltimaConta')}
                         handleBlur={handleBlur('kwhUltimaConta')}
                         returnKeyType="next"
@@ -287,7 +292,7 @@ export default HomeView = (props) => {
 
                   <View style={[styles.margin_bottom_32]}>
                     <View style={styles.conatiner_top_text}>
-                      <Text style={[styles.black_text]}>Insira o valor do <Text style={{fontFamily: 'Montserrat-Bold'}}>Relógio de Luz</Text>:</Text>
+                      <Text style={[styles.black_text]}>Insira o valor de 5 dígitos do <Text style={{fontFamily: 'Montserrat-Bold'}}>Relógio de Luz</Text>:</Text>
                     </View>
 
                     <View 
@@ -309,6 +314,8 @@ export default HomeView = (props) => {
                             styles.flex_grow,
                           ]}
                           type={'only-numbers'}
+                          maxLength={5}
+                          keyboardType='number-pad'
                           value={values.kwhRelogio}
                           onChangeText={handleChange('kwhRelogio')}
                           handleBlur={handleBlur('kwhRelogio')}

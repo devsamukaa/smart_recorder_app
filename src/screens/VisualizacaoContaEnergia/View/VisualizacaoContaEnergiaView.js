@@ -107,7 +107,7 @@ export default VisualizacaoContaEnergiaView = (props) => {
 
                 <View style={[customStyles.container_labels, styles.margin_bottom_8]}>
                   <Text style={[styles.bold_black_text_18]}>Grupo:</Text>
-                  <Text style={[styles.black_text_18]}>B2 - Residencial</Text>
+                  <Text style={[styles.black_text_18]}>B1 - Residencial</Text>
                 </View>
 
                 {props.userInfos.hasOwnProperty("consumo") && renderBandeiraVigente()}
