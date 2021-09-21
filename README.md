@@ -26,3 +26,6 @@ Caso queira pular a etapa de cadastro e conhecer apenas as principais funcionali
 *Login:* samuel.rocha.tj@outlook.com
 
 *Password:* gotech@123
+
+Abraços! 
+Time GoTech! 😄
