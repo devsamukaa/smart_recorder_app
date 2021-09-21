@@ -15,7 +15,9 @@ Para testar o aplicativo em celulares android, basta baixar o [apk](https://gith
 ## Nota Importante
 Ao realizar o login ou o cadastro, **_aguarde em torno de 20s_** para a conclusão da chamada após submeter os dados.
 
-Isso ocorre porque hospedamos nosso backend no heroku e possui o comportamento de, após alguns momentos sem requisição, o servidor "dorme" e demora esse tempo para subir novamente.
+Isso ocorre devido a termos hospedamos nosso backend no heroku, que possui o comportamento de "dormir" após alguns momentos sem requisição, e demora esse tempo para subir novamente e executar as chamadas rest's. 
+
+Após esse período, as chamadas são executadas quase que instantâneamente.
 ## Outras informações e credenciais para login
 Para conhecer e testar todas as funcionalidades, inclusive a de cadastro e esquecimento de senha, além dos cadastros que são realizados dentro da área logada, você pode desejar criar uma conta no nosso app.
 
