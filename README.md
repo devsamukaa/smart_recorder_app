@@ -12,6 +12,11 @@ Para testar o aplicativo em celulares android, basta baixar o [apk](https://gith
   * Se for executá-lo em um dispositivo *IOS*, volte para a pasta raiz e execute ```react-native run-ios```
 
 # Conhecendo e testando nossa solução
+## Nota Importante
+Ao realizar o login ou o cadastro, **_aguarde em torno de 20s_** para a conclusão da chamada após submeter os dados.
+
+Isso ocorre porque hospedamos nosso backend no heroku e possui o comportamento de, após alguns momentos sem requisição, o servidor "dorme" e demora esse tempo para subir novamente.
+## Outras informações e credenciais para login
 Para conhecer e testar todas as funcionalidades, inclusive a de cadastro e esquecimento de senha, além dos cadastros que são realizados dentro da área logada, você pode desejar criar uma conta no nosso app.
 
 Caso queira pular a etapa de cadastro e conhecer apenas as principais funcionalidades da área logada, basta realizar o login com as seguintes credenciais abaixo:
